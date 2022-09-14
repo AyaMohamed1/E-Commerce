@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchAllProducts } from "../actions";
+import { fetchWomenProducts } from "../actions";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import IProductList from "../interfaces/ProductsList";
+import IWomenProducts from "../interfaces/WomenProducts";
 import NavBar from "./NavBar";
 
-const ProductsList: React.FunctionComponent<IProductList> = (props) => {
+const WomenProducts: React.FunctionComponent<IWomenProducts> = (props) => {
   useEffect(() => {
-    props.fetchAllProducts();
+    props.fetchWomenProducts();
   }, []);
   // console.log(props.allProducts);
   return (
@@ -21,7 +21,7 @@ const ProductsList: React.FunctionComponent<IProductList> = (props) => {
                 </h2> */}
 
           <div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-            {props.allProducts.map((product: any) => (
+            {props.womenProducts.map((product: any) => (
               <Link to={`/details/${product.id}`} key={product.id}>
                 <div className="group relative">
                   <div className="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:aspect-none lg:h-80">
@@ -54,9 +54,9 @@ const ProductsList: React.FunctionComponent<IProductList> = (props) => {
 
 const mapStateToProps = (state: any) => {
   // console.log(state);
-  return { allProducts: state.allProducts };
+  return { womenProducts: state.womenProducts };
 };
 
 export default connect(mapStateToProps, {
-  fetchAllProducts,
-})(ProductsList);
+  fetchWomenProducts,
+})(WomenProducts);
