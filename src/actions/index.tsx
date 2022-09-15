@@ -35,3 +35,9 @@ export function fetchMenProducts(): any {
     dispatch({ type: "MEN_PRODUCTS", payload: result.data });
   };
 }
+
+export function addToCart(product: any): any {
+  return function (dispatch: any) {
+    dispatch({ type: "ADD_TO_CART", payload: product });
+  };
+}
