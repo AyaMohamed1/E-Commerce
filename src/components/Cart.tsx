@@ -129,9 +129,9 @@ const Cart: React.FunctionComponent<ICart> = (props) => {
                                       </p> */}
                                       </div>
                                       <div className="flex flex-1 items-end justify-between text-sm">
-                                        {/* <p className="text-gray-500">
-                                        Qty {product.quantity}
-                                      </p> */}
+                                        <p className="text-gray-500">
+                                          Qty {product.quantity}
+                                        </p>
 
                                         <div className="flex">
                                           <button

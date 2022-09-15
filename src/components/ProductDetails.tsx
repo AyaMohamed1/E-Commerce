@@ -57,6 +57,7 @@ const ProductDetails: React.FunctionComponent<
                     image: props.productData.image,
                     title: props.productData.title,
                     price: props.productData.price,
+                    quantity: 1,
                   });
                 }}
               >
