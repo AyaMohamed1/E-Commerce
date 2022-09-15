@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from "react";
+import React, { Component, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { getProductDetails, addToCart } from "../actions";
 import { RouteComponentProps } from "react-router-dom";
@@ -8,11 +8,14 @@ import NavBar from "./NavBar";
 const ProductDetails: React.FunctionComponent<
   IProductDetails & RouteComponentProps<any>
 > = (props) => {
+  const [quantity, setQuantity] = useState(0);
+
   useEffect(() => {
     let idx = props.match.params.number;
     // console.log(idx);
     props.getProductDetails(idx);
   }, []);
+
   return (
     <div>
       <NavBar />
@@ -52,17 +55,38 @@ const ProductDetails: React.FunctionComponent<
                 className="my-4 group relative flex w-full justify-center rounded-md border border-transparent bg-orange-500 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                 onClick={() => {
                   console.log("Adding to cart");
+                  setQuantity(quantity + 1);
                   props.addToCart({
                     id: props.productData.id,
                     image: props.productData.image,
                     title: props.productData.title,
                     price: props.productData.price,
-                    quantity: 1,
+                    quantity: quantity + 1,
                   });
                 }}
               >
                 Add To Cart
               </button>
+              <div className="flex justify-between">
+                <button
+                  type="button"
+                  data-mdb-ripple="true"
+                  data-mdb-ripple-color="light"
+                  className="inline-block px-6 py-2.5 bg-orange-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                >
+                  +
+                </button>
+                <h2 className=""> {quantity} </h2>
+
+                <button
+                  type="button"
+                  data-mdb-ripple="true"
+                  data-mdb-ripple-color="light"
+                  className="inline-block px-6 py-2.5 bg-orange-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                >
+                  -
+                </button>
+              </div>
             </div>
           </div>
         </div>
