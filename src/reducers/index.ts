@@ -3,7 +3,7 @@ import productsReducer from "./productsReducer";
 import productDetailsReducer from "./productDetailsReducer";
 import womenProductsReducer from "./womenProductsReducer";
 import menProductsReducer from "./menProductsReducer";
-import addToCart from "./addToCart";
+import addToCart from "./addToCartReducer";
 
 export default combineReducers({
   allProducts: productsReducer,
